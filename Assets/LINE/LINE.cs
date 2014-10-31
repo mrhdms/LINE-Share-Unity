@@ -9,7 +9,6 @@ public class LINE {
 	/// </summary>
 	/// <param name="message">シェアするメッセージ</param>
 	public static void ShareText(string message) {
-				Debug.Log ("[text]:" + WWW.EscapeURL (message));
 				Application.OpenURL(string.Format(URI, "text", WWW.EscapeURL(message)));
 	}
 
@@ -25,9 +24,7 @@ public class LINE {
 	static extern string _SetImage(string textureURL) ;
 
 	private static void ShareImageSub(string textureURL) {
-		Debug.Log ("[image path]:" + textureURL);
 		string shareImageString = _SetImage(textureURL);
-		Debug.Log ("[clipboard name]:" + shareImageString);
 		Application.OpenURL(string.Format(URI, "image", WWW.EscapeURL(shareImageString)));
 	}
 
@@ -35,7 +32,6 @@ public class LINE {
 
 	private static void ShareImageSub(string textureURL) {
 		string shareImageString = textureURL;
-		Debug.Log ("[image path]:" + shareImageString);
 		Application.OpenURL(string.Format(URI, "image", shareImageString));//androidはエスケープしなくて良い
 	}
 
