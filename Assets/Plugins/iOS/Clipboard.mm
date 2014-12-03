@@ -5,12 +5,12 @@
 //  Created by hidemasa_mori on 2014/10/31.
 //
 //
-NSString* CreateNSString(const char* string)
+NSString* CB_CreateNSString(const char* string)
 {
     return [NSString stringWithUTF8String: string ? string : ""];
 }
 
-char* MakeStringCopy(const char* string)
+char* CB_MakeStringCopy(const char* string)
 {
     if (string == NULL) return NULL;
     char* res = (char*)malloc(strlen(string) + 1);
@@ -22,26 +22,26 @@ extern "C"
 {
     char *_SetText(const char* text)
     {
-        NSString *nsstringText = CreateNSString(text);
+        NSString *nsstringText = CB_CreateNSString(text);
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = nsstringText;
-        return MakeStringCopy([pasteboard.name UTF8String]);
+        return CB_MakeStringCopy([pasteboard.name UTF8String]);
     }
     
     char *_SetImage(const char* textureURL)
     {
-        NSString *_textureURL = CreateNSString(textureURL);
+        NSString *_textureURL = CB_CreateNSString(textureURL);
         if ([_textureURL length] != 0) {
             UIImage *image = [UIImage imageWithContentsOfFile:_textureURL];
             if (image == nil) {
-                return MakeStringCopy([@"" UTF8String]);
+                return CB_MakeStringCopy([@"" UTF8String]);
             }
             
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.image = image;
-            return MakeStringCopy([pasteboard.name UTF8String]);
+            return CB_MakeStringCopy([pasteboard.name UTF8String]);
         } else {
-            return MakeStringCopy([@"" UTF8String]);
+            return CB_MakeStringCopy([@"" UTF8String]);
         }
     }
     
@@ -50,6 +50,6 @@ extern "C"
     {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         NSString *string = [pasteboard valueForPasteboardType:@"public.text"];
-        return MakeStringCopy([string UTF8String]);
+        return CB_MakeStringCopy([string UTF8String]);
     }
 }
