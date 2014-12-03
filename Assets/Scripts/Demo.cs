@@ -18,13 +18,13 @@ public class Demo : MonoBehaviour
 		{
 
 
-				if (GUILayout.Button("<size=30><b>ShareText</b></size>", GUILayout.Height(60))) {
-						LINE.ShareText ("こんにちは！");
+				if (GUILayout.Button ("<size=30><b>ShareText</b></size>", GUILayout.Height (60))) {
+						LINE.ShareText ("こんにちは！ 漢字 ひらがな カタカナ ﾊﾝｶｸｶﾅ 1234 abcd -^¥@[;:],./_");
 				}
 
 
 
-				if (GUILayout.Button ("<size=30><b>ShareImage</b></size>", GUILayout.Height(60))) {
+				if (GUILayout.Button ("<size=30><b>ShareImage</b></size>", GUILayout.Height (60))) {
 						StartCoroutine ("CaptureAndShareImage");
 				}
 		}
